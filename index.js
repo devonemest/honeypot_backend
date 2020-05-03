@@ -9,18 +9,38 @@ const connection = mysql.createConnection({
 
 connection.connect();
 
-
+var obj = {
+    geo:{
+        1: "123214124",
+        2: "12342142144"
+    } ,
+    text:{
+        1:"Я сделал",
+        2:"этот код",
+        3:"в 2 часа ночи"
+    } ,
+    hash:{
+        1: "0"
+    }
+}
+var text = "egor best"
 var time = new Date();
-var name = "Ivan"
+var name = "Egor"
+console.log(Object.keys(obj.text).length)
+
 var text = "Я плотно покушал код запуска ракет 322"
 try{
-    connection.query(`INSERT INTO text VALUES('${name}','${time}','${text}');`, function(err, rows, fields) {
-        if (err) throw err;
-        console.log('The solution is: ', rows[0].solution);
-    });
+    for(var i=0; i <= Object.keys(obj.text).length; i++){
+        text = obj.text[i]
+        connection.query(`INSERT INTO text VALUES('${name}','${time}','${text}');`, function(err, rows, fields) {
+            if (err) throw err;
+        });
+    }
+
+
+
 }catch (e) {
-    alert(e)
-    alert("sosi")
+    console.log(e)
 }
 
 
