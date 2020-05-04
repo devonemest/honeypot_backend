@@ -1,10 +1,11 @@
 const mysql      = require('mysql');
+var moment = require('moment');
 const connection = mysql.createConnection({
     host     : 'localhost',
     port     :  '3306',
     user     : 'root',
     password : 'root',
-    database : 'top-secret',
+    database : 'mydb',
 });
 
 connection.connect();
@@ -17,28 +18,36 @@ var obj = {
     text:{
         1:"Я сделал",
         2:"этот код",
-        3:"в 2 часа ночи"
+        3:"в 2 часа ночи",
+        4:"Оно",
+        5:"работает",
+        6:"я удивлен"
     } ,
     hash:{
-        1: "0"
+        1: "1234536755431234253"
     }
 }
-var text = "egor best"
-var time = new Date();
-var name = "Egor"
-console.log(Object.keys(obj.text).length)
-
-var text = "Я плотно покушал код запуска ракет 322"
+var hash = ""
+var geo = ''
+var text = ``
+var time =moment().format();
+var anyString = 'Mozilla';
+time = time.substring(0,19);
+// console.log(Object.keys(obj.text).length) количество ключей в обьекте
 try{
-    for(var i=0; i <= Object.keys(obj.text).length; i++){
-        text = obj.text[i]
-        connection.query(`INSERT INTO text VALUES('${name}','${time}','${text}');`, function(err, rows, fields) {
-            if (err) throw err;
-        });
+
+    for(var i=1; i <= Object.keys(obj.text).length ; i++){
+        // console.log(i)
+        // console.log(obj.text[i])
+        text +=obj.text[i] + " "
     }
+    hash = obj.hash[1]
+    geo +=obj.geo[1] +" "+ obj.geo[2]
+    connection.query(`INSERT INTO data VALUES(${hash},'${time}','${geo}','${text}');`, function(err, rows, fields) {
+        if (err) throw err;
+    });
 
-
-
+    // console.log(text)
 }catch (e) {
     console.log(e)
 }
