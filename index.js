@@ -12,8 +12,8 @@ connection.connect();
 
 var obj = {
     geo:{
-        1: "123214124",
-        2: "12342142144"
+        1: "1.232141241234567890",
+        2: "12.34214214412345689"
     } ,
     text:{
         1:"Я сделал",
@@ -27,12 +27,10 @@ var obj = {
         1: "1234536755431234253"
     }
 }
-var hash = ""
-var geo = ''
 var text = ``
-var time =moment().format();
-var anyString = 'Mozilla';
-time = time.substring(0,19);
+// var time =moment().format();
+// var anyString = 'Mozilla';
+// time = time.substring(0,19);
 // console.log(Object.keys(obj.text).length) количество ключей в обьекте
 try{
 
@@ -41,13 +39,12 @@ try{
         // console.log(obj.text[i])
         text +=obj.text[i] + " "
     }
-    hash = obj.hash[1]
-    geo +=obj.geo[1] +" "+ obj.geo[2]
-    connection.query(`INSERT INTO data VALUES(${hash},'${time}','${geo}','${text}');`, function(err, rows, fields) {
+    var hash = obj.hash[1]
+    var geo1 =obj.geo[1]
+    var geo2 =obj.geo[2]
+    connection.query(`INSERT INTO data VALUES(${hash},${geo1},${geo2},'${text}');`, function(err, rows, fields) {
         if (err) throw err;
     });
-
-    // console.log(text)
 }catch (e) {
     console.log(e)
 }
