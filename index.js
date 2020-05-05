@@ -1,5 +1,6 @@
-const mysql      = require('mysql');
-var moment = require('moment');
+"use strict";
+const mysql = require('mysql');
+// var moment = require('moment');
 const connection = mysql.createConnection({
     host     : 'localhost',
     port     :  '3306',
@@ -9,7 +10,6 @@ const connection = mysql.createConnection({
 });
 
 connection.connect();
-
 var obj = {
     geo:{
         1: "1.232141241234567890",
@@ -26,8 +26,8 @@ var obj = {
     hash:{
         1: "1234536755431234253"
     }
-}
-var text = ``
+};
+var text = null
 // var time =moment().format();
 // var anyString = 'Mozilla';
 // time = time.substring(0,19);
@@ -39,9 +39,9 @@ try{
         // console.log(obj.text[i])
         text +=obj.text[i] + " "
     }
-    var hash = obj.hash[1]
-    var geo1 =obj.geo[1]
-    var geo2 =obj.geo[2]
+    var hash = obj.hash[1];
+    var geo1 =obj.geo[1];
+    var geo2 =obj.geo[2];
     connection.query(`INSERT INTO data VALUES(${hash},${geo1},${geo2},'${text}');`, function(err, rows, fields) {
         if (err) throw err;
     });
