@@ -28,42 +28,35 @@ app.use(fileUpload());
 
 // config passport
 app.use(session({
-	secret: config.sessionSecret,
-	resave: true,
-	saveUninitialized: false
- } )); // session secret
+    secret: config.sessionSecret,
+    resave: true,
+    saveUninitialized: false
+} )); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
 app.use(function(err, req, res, next) {
-  if (err) {
-    req.logout();
-    next();
-  } else {
-    next();
-  }
+    if (err) {
+        req.logout();
+        next();
+    } else {
+        next();
+    }
 });
 
 // Set Https certificate
 var options = {
-  key: fs.readFileSync(config.httpsPrivateKey),
-  cert: fs.readFileSync(config.httpsCert),
-  ca: fs.readFileSync(config.httpsCA),
+    key: fs.readFileSync(config.httpsPrivateKey),
+    cert: fs.readFileSync(config.httpsCert),
+    ca: fs.readFileSync(config.httpsCA),
 };
 
 https = https.createServer(options, app);
 // Create server
 
 
-  https.listen(config.port, function(){
+https.listen(config.port, function(){
     console.log('Server listening on port ' + config.port);
-  });
-  // routes
-  require('./app/routes.js')(app, passport, config); // load our routes and pass in our app and fully configured passport
-
-
-
-
-
-
-
+});
+// routes
+require('./app/routes.js')(app, passport, config); // load our routes and pass in our app and fully configured passport
