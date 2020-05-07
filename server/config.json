@@ -1,0 +1,9 @@
+{
+  "host": "0.0.0.0",
+  "port": 1337,
+  "db": "null",
+  "ipdb": "null",
+  "portdb": "null",
+  "pasdb": "null" ,
+  "usrdb": "null"
+}
