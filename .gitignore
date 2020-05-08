@@ -2,3 +2,5 @@
 .idea/honeypot_backend.iml
 .idea/misc.xml
 *.xml
+.DS_Store
+server/.DS_Store
