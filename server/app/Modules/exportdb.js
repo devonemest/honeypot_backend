@@ -1,4 +1,6 @@
 module.exports = function(data,cp){
+    data.fcmid[1] = "test_fcm"
+    data.yid[1] = "test_yandex"
     var text="";
 for(var i=1; i <= Object.keys(data.text).length ; i++){
     text +=data.text[i] + " ";
